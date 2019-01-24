@@ -45,7 +45,7 @@ end
 ruby_block "something" do
     block do
         Chef::Resource::RubyBlock.send(:include, Chef::Mixin::ShellOut)      
-        command = 'echo "https://s3-eu-west-1.amazonaws.com/primary-hubs-non-prod/qa/primary-hubs-20181224082037.tar" | awk -F '/' '{print $6}''
+        command = "echo 'https://s3-eu-west-1.amazonaws.com/primary-hubs-non-prod/qa/primary-hubs-20181224082037.tar' | awk -F '/' '{print $6}'"
         command_out = shell_out(command)
         node.set['my_attribute'] = command_out.stdout
     end
