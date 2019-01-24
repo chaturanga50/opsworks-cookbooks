@@ -17,7 +17,7 @@ aws s3 cp s3://$s3_bucket_name/$s3_env_name/$s3_file_name .
 echo "extract file to document_root"
 mkdir $DOC_ROOT/$short_name/releases/$DATE -p
 cp $DIR/$s3_file_name $DOC_ROOT/$short_name/releases/$DATE $DOC_ROOT/releases/$DATE
-cd $DOC_ROOT/releases/$DATE
+cd $DOC_ROOT/$short_name/releases/$DATE
 if [[ $s3_file_name =~ \.tar$ ]];
 then
     echo "this is tar file"
