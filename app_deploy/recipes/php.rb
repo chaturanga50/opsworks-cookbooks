@@ -19,7 +19,7 @@ template '/tmp/get_s3.sh' do
   mode   "0755"
   variables({
     :url     => "#{app['app_source']['url']}",
-    :document_root     => "#{app['attributes']['document_root']}",
+    :document_root     => "/srv/www/#{app['attributes']['document_root']}",
     :short_name => "#{app['shortname']}"
   })
   owner 'apache'
