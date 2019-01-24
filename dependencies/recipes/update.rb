@@ -2,10 +2,10 @@
 # Cookbook Name:: dependencies
 # Recipe:: update
 
-case node["opsworks"]["ruby_stack"]
-when "ruby"
-  include_recipe "ruby"
-end
+# case node["opsworks"]["ruby_stack"]
+# when "ruby"
+#   include_recipe "ruby"
+# end
 
 include_recipe "opsworks_nodejs" if node["opsworks"]["instance"]["layers"].include?("nodejs-app")
 
