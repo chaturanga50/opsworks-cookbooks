@@ -1,4 +1,4 @@
-def infrastructure_class?
+def infrastructure_class?(ec2)
   node[:opsworks][:instance][:infrastructure_class] == ec2
 end
 
