@@ -8,6 +8,13 @@ doc_root = node['app']['deploy']['doc_root']
 environment = node['app']['deploy']['environment']
 file_name = node['app']['deploy']['file_name']
 
+directory "#{doc_root}" do
+  owner 'apache'
+  group 'apache'
+  mode '0644'
+  recursive true
+  action :delete
+end
 
 directory "#{doc_root}" do
   owner 'apache'
@@ -33,4 +40,13 @@ end
 file "#{doc_root}/#{file_name}" do
   action :delete
   only_if { File.exist? "#{doc_root}/#{file_name}" }
+end
+
+app = search("aws_opsworks_app").first
+Chef::Log.info("********** The app's short name is '#{app['shortname']}' **********")
+Chef::Log.info("********** The app's URL is '#{app['app_source']['url']}' **********")
+
+search("aws_opsworks_app").each do |app|
+  Chef::Log.info("********** The app's short name is '#{app['shortname']}' **********")
+  Chef::Log.info("********** The app's URL is '#{app['app_source']['url']}' **********")
 end
