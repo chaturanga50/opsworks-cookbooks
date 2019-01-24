@@ -18,7 +18,6 @@ define :opsworks_deploy_dir do
           done
         EOH
         ignore_failure true
-        only_if { infrastructure_class?("ec2") }
       end
     end
   end

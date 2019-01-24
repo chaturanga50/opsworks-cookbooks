@@ -88,7 +88,7 @@ service 'gmetad' do
   action :stop
 end
 
-include_recipe 'opsworks_ganglia::bind-mount-data' if infrastructure_class?('ec2')
+include_recipe 'opsworks_ganglia::bind-mount-data'
 
 template '/etc/ganglia/gmetad.conf' do
   source 'gmetad.conf.erb'

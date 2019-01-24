@@ -28,10 +28,8 @@ default[:ganglia][:udp_client_port] = 8666
 default[:ganglia][:user] = 'ganglia'
 default[:ganglia][:rrds_user] = 'nobody'
 
-if infrastructure_class?('ec2')
-  default[:ganglia][:autofs_options] = "-fstype=none,bind,rw"
-  default[:ganglia][:autofs_entry] = "#{node[:ganglia][:original_datadir]} #{node[:ganglia][:autofs_options]} :#{node[:ganglia][:datadir]}"
-end
+default[:ganglia][:autofs_options] = "-fstype=none,bind,rw"
+default[:ganglia][:autofs_entry] = "#{node[:ganglia][:original_datadir]} #{node[:ganglia][:autofs_options]} :#{node[:ganglia][:datadir]}"
 
 case node[:platform_family]
 when "debian"

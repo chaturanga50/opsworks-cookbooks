@@ -4,7 +4,7 @@ describe_recipe 'ssh_users::default' do
   include MiniTest::Chef::Resources
   include MiniTest::Chef::Assertions
 
-  let(:sudoers_file) { infrastructure_class?('ec2') ? '/etc/sudoers' : '/etc/sudoers.d/opsworks' }
+  let(:sudoers_file) { '/etc/sudoers' : '/etc/sudoers.d/opsworks' }
 
   it 'creates opsworks group' do
     group('opsworks').must_exist
