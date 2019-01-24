@@ -8,13 +8,12 @@ doc_root = node['app']['deploy']['doc_root']
 environment = node['app']['deploy']['environment']
 file_name = node['app']['deploy']['file_name']
 
-dir = "#{doc_root}"
-[].tap{|x| Pathname(dir).each_filename{|d| x << (x.empty? ? [d] : x.last + [d])}}.each do |dir|
-  directory File.join(dir) do
-    owner 'apache'
-    group 'apache'
-    mode '0644'
-  end
+
+directory "#{doc_root}" do
+  owner 'apache'
+  group 'apache'
+  mode '0644'
+  recursive true
 end
 
 s3_file "/tmp/#{file_name}" do
