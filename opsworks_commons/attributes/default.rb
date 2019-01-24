@@ -19,5 +19,3 @@ default[:opsworks_commons][:assets_url] = 'https://opsworks-instance-assets-us-e
 default[:ruby][:executable] = '/usr/local/bin/ruby'
 
 include_attribute "opsworks_commons::customize"
-
-default[:opsworks][:instance][:infrastructure_class] == "ec2"
