@@ -1,9 +1,5 @@
-def infrastructure_class?(other)
-  node[:opsworks][:instance][:infrastructure_class] == other
-end
-
 def rhel6?
-  %w(redhat centos).include?(node["platform"]) && Chef::VersionConstraint.new("~> 6.0").include?(node["platform_version"])
+  %w(redhat centos amazon).include?(node["platform"])
 end
 
 def rhel7?
