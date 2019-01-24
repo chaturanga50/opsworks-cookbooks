@@ -42,11 +42,15 @@ file "#{doc_root}/#{file_name}" do
   only_if { File.exist? "#{doc_root}/#{file_name}" }
 end
 
-app = search("aws_opsworks_app").first
-Chef::Log.info("********** The app's short name is '#{app['shortname']}' **********")
-Chef::Log.info("********** The app's URL is '#{app['app_source']['url']}' **********")
-
-search("aws_opsworks_app").each do |app|
-  Chef::Log.info("********** The app's short name is '#{app['shortname']}' **********")
-  Chef::Log.info("********** The app's URL is '#{app['app_source']['url']}' **********")
+ruby_block "something" do
+    block do
+        Chef::Resource::RubyBlock.send(:include, Chef::Mixin::ShellOut)      
+        command = 'echo "https://s3-eu-west-1.amazonaws.com/primary-hubs-non-prod/qa/primary-hubs-20181224082037.tar" | awk -F '/' '{print $6}''
+        command_out = shell_out(command)
+        node.set['my_attribute'] = command_out.stdout
+    end
+    action :create
 end
+
+exex = node['my_attribute']
+Chef::Log.info("********** The app's short name is '#{exex}' **********")
