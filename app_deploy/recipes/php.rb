@@ -6,7 +6,7 @@
 time = Time.now.strftime("%F-%T").gsub(':','')
 app = search("aws_opsworks_app").first
 
-directory "#{app['attributes']['document_root']}" do
+directory "/srv/www/#{app['attributes']['document_root']}" do
   owner 'apache'
   group 'apache'
   mode '0644'
