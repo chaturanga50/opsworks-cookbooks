@@ -14,7 +14,7 @@ globals {
   cleanup_threshold = 500 /*secs */
   gexec = no
   send_metadata_interval = 20
-  override_hostname = <%= node[:opsworks][:instance][:hostname] %>
+  override_hostname = <%= node['hostname'] %>
 }
 
 /* If a cluster attribute is specified, then all gmond hosts are wrapped inside
