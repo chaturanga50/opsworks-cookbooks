@@ -1,6 +1,9 @@
+def infrastructure_class?
+  node[:opsworks][:instance][:infrastructure_class] == ec2
+end
+
 def rhel6?
   %w(redhat centos amazon).include?(node["platform"])
-  node[:opsworks][:instance][:infrastructure_class] == ec2
 end
 
 def rhel7?
